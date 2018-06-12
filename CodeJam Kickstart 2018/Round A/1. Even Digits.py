@@ -60,12 +60,13 @@ def moves_arr(x):
 
     for i in range(len(smaller)):
         if smaller[i] % 2 != 0:
-            smaller[i] = smaller[i] - 1
+            smaller[i] -= 1
 
             if bigger[i] == 9 and i >= 1:
+                bigger[i] = 0
                 bigger[i - 1] = bigger[i - 1] + 2
             elif bigger[i] == 9:
-                bigger[i] = 12
+                bigger[i] = 22
             else:
                 bigger[i] = bigger[i] + 1
 

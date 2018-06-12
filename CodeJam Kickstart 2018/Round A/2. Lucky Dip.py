@@ -33,14 +33,15 @@ def solve():
         print("Case #" + str(i + 1) + ": " + str(expected_value(nums, k)))
 
 
-def expected_value(arr, redips):  # Can be optimized to run in redips * log(len(arr)) time, not redips * len(arr)
+def expected_value(items, redips):  # Can be optimized to run in redips * log(len(items)) time, not redips * len(items)
     dyn = [0] * (redips + 1)
 
-    dyn[0] = sum(arr) / len(arr)
+    dyn[0] = sum(items) / len(items)
 
     for i in range(1, redips + 1):
-        for j in range(len(arr)):
-            dyn[i] += max(arr[j], dyn[i - 1]) / len(arr)
+        for j in range(len(items)):
+            dyn[i] += max(items[j], dyn[i - 1])
+        dyn[i] /= len(items)
 
     return dyn[redips]
 
