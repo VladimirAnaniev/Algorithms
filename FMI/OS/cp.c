@@ -5,7 +5,7 @@
 // реализирайте команда ср, работеща с произволен брой подадена входни параме
 
 void main(int argc, char *argv[]) {
-	char buff;
+	char buff[256];
 	char new_name[256];
 	for(int i = 1; i < argc - 1; i++) {
 		int orig = open(argv[i], O_RDONLY);
@@ -25,12 +25,12 @@ void main(int argc, char *argv[]) {
 			continue;
 		}
 
-		while(read(orig, &buff, 1)) {
-			write(cp, &buff, 1);
+		while(read(orig, buff, 256)) {
+			write(cp, buff, 256);
 		}
 
 		close(orig);
-		close(new_name);
+		close(cp);
 	}
 
 }
