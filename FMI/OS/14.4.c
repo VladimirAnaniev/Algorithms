@@ -11,4 +11,6 @@ void main(int argc, char *argv[]) {
 	} else {
 		write(file, "foo", 3);
 	}
+
+	close(file);
 }

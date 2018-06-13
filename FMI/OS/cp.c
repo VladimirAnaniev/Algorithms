@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
-// реализирайте команда ср, работеща с произволен брой подадена входни параме
+// реализирайте команда ср, работеща с произволен брой подадена входни параметри
 
 void main(int argc, char *argv[]) {
 	char buff[256];
 	char new_name[256];
+	int len;
+
 	for(int i = 1; i < argc - 1; i++) {
 		int orig = open(argv[i], O_RDONLY);
 		if(orig == -1) {
@@ -25,8 +27,8 @@ void main(int argc, char *argv[]) {
 			continue;
 		}
 
-		while(read(orig, buff, 256)) {
-			write(cp, buff, 256);
+		while(len = read(orig, buff, 256)) {
+			write(cp, buff, len);
 		}
 
 		close(orig);
